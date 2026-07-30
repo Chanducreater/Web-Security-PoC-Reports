@@ -46,3 +46,11 @@ sys:x:3:3:sys:/dev:/usr/sbin/nologin
 sync:x:4:65534:sync:/bin:/bin/sync
 ...
 ```
+---
+
+## 4. Remediation / Recommendation (How to Fix)
+To prevent File Path Traversal vulnerabilities, developers should implement the following defenses:
+
+1. **Avoid direct user input in file paths:** Store file names in a database and reference them using an index ID instead of raw filenames.
+2. **Input Validation:** Restrict the `filename` input to strictly alphanumeric characters using a regex whitelist (e.g., `^[a-zA-0-9]+\.(jpg|png)$`).
+3. **Use Safe APIs:** Use built-in framework functions that automatically resolve canonical paths and ensure the file remains within the designated directory (e.g., `chroot` or strict base path comparison).
